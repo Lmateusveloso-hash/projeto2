@@ -1,0 +1,275 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Consulta de Dispositivos</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, sans-serif;
+    }
+
+    body{
+      background:#f4f7fb;
+      color:#222;
+      padding:30px 20px;
+    }
+
+    .container{
+      max-width:1100px;
+      margin:0 auto;
+    }
+
+    .topo-busca{
+      text-align:center;
+      margin-bottom:30px;
+    }
+
+    .topo-busca h1{
+      font-size:42px;
+      margin-bottom:10px;
+      color:#111;
+    }
+
+    .topo-busca p{
+      font-size:18px;
+      color:#666;
+      margin-bottom:25px;
+    }
+
+    .search-box{
+      position:relative;
+      max-width:700px;
+      margin:0 auto;
+    }
+
+    .search-box i{
+      position:absolute;
+      left:18px;
+      top:50%;
+      transform:translateY(-50%);
+      color:#888;
+      font-size:18px;
+    }
+
+    .search-box input{
+      width:100%;
+      padding:16px 20px 16px 48px;
+      font-size:18px;
+      border:1px solid #dcdcdc;
+      border-radius:35px;
+      outline:none;
+      background:#fff;
+      box-shadow:0 4px 12px rgba(0,0,0,0.08);
+      transition:0.3s;
+    }
+
+    .search-box input:focus{
+      border-color:#2563eb;
+      box-shadow:0 0 0 4px rgba(37,99,235,0.12);
+    }
+
+    .info-busca{
+      margin:20px 0 18px;
+      font-size:16px;
+      font-weight:bold;
+      color:#333;
+    }
+
+    .grid-cards{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
+      gap:20px;
+    }
+
+    .card{
+      background:#fff8ef;
+      border-radius:16px;
+      padding:18px;
+      box-shadow:0 4px 10px rgba(0,0,0,0.06);
+      transition:0.2s;
+    }
+
+    .card:hover{
+      transform:translateY(-4px);
+    }
+
+    .card h3{
+      font-size:20px;
+      margin-bottom:12px;
+      color:#222;
+    }
+
+    .card p{
+      margin-bottom:8px;
+      color:#555;
+      line-height:1.4;
+    }
+
+    .status{
+      display:inline-block;
+      margin-top:10px;
+      padding:6px 12px;
+      border-radius:20px;
+      font-size:14px;
+      background:#e9eefc;
+      color:#444;
+    }
+
+    .sem-resultados{
+      display:none;
+      text-align:center;
+      margin-top:30px;
+      font-size:18px;
+      color:#777;
+      background:#fff;
+      padding:20px;
+      border-radius:14px;
+      box-shadow:0 4px 10px rgba(0,0,0,0.05);
+    }
+
+    @media (max-width:768px){
+      .topo-busca h1{
+        font-size:30px;
+      }
+
+      .topo-busca p{
+        font-size:16px;
+      }
+
+      .search-box input{
+        font-size:16px;
+        padding:14px 18px 14px 44px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="topo-busca">
+      <h1>Consulta de Dispositivos</h1>
+      <p>Pesquise pelo nome do dispositivo ou pelo número de série</p>
+
+      <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input 
+          type="text" 
+          id="campoBusca" 
+          placeholder="Ex: Dell, Impressora, ABC123456"
+        >
+      </div>
+    </div>
+
+    <div class="info-busca" id="infoBusca">Mostrando todos os dispositivos</div>
+
+    <div class="grid-cards" id="listaDispositivos">
+      <div class="card">
+        <h3>Notebook Dell 01</h3>
+        <p><strong>Nº de série:</strong> ABC123456</p>
+        <p><strong>Marca:</strong> Dell</p>
+        <p><strong>Modelo:</strong> Latitude 5420</p>
+        <p><strong>Localização:</strong> Sala 2</p>
+        <p><strong>Responsável:</strong> Lucas</p>
+        <span class="status">Em uso</span>
+      </div>
+
+      <div class="card">
+        <h3>Impressora HP Laser</h3>
+        <p><strong>Nº de série:</strong> HP987654</p>
+        <p><strong>Marca:</strong> HP</p>
+        <p><strong>Modelo:</strong> LaserJet Pro</p>
+        <p><strong>Localização:</strong> Recepção</p>
+        <p><strong>Responsável:</strong> Carlos</p>
+        <span class="status">Ativo</span>
+      </div>
+
+      <div class="card">
+        <h3>Tablet Samsung A7</h3>
+        <p><strong>Nº de série:</strong> SAM456789</p>
+        <p><strong>Marca:</strong> Samsung</p>
+        <p><strong>Modelo:</strong> Galaxy Tab A7</p>
+        <p><strong>Localização:</strong> TI</p>
+        <p><strong>Responsável:</strong> Marcos</p>
+        <span class="status">Manutenção</span>
+      </div>
+
+      <div class="card">
+        <h3>Desktop Lenovo 03</h3>
+        <p><strong>Nº de série:</strong> LEN654321</p>
+        <p><strong>Marca:</strong> Lenovo</p>
+        <p><strong>Modelo:</strong> ThinkCentre</p>
+        <p><strong>Localização:</strong> Escritório</p>
+        <p><strong>Responsável:</strong> Ana</p>
+        <span class="status">Ativo</span>
+      </div>
+
+      <div class="card">
+        <h3>Notebook Acer Nitro</h3>
+        <p><strong>Nº de série:</strong> ACE741258</p>
+        <p><strong>Marca:</strong> Acer</p>
+        <p><strong>Modelo:</strong> Nitro 5</p>
+        <p><strong>Localização:</strong> Sala 5</p>
+        <p><strong>Responsável:</strong> João</p>
+        <span class="status">Em uso</span>
+      </div>
+
+      <div class="card">
+        <h3>Celular Motorola G54</h3>
+        <p><strong>Nº de série:</strong> MOT369258</p>
+        <p><strong>Marca:</strong> Motorola</p>
+        <p><strong>Modelo:</strong> Moto G54</p>
+        <p><strong>Localização:</strong> Almoxarifado</p>
+        <p><strong>Responsável:</strong> Pedro</p>
+        <span class="status">Reserva</span>
+      </div>
+    </div>
+
+    <div class="sem-resultados" id="semResultados">
+      Nenhum dispositivo encontrado.
+    </div>
+  </div>
+
+  <script>
+    const campoBusca = document.getElementById("campoBusca");
+    const cards = document.querySelectorAll(".card");
+    const infoBusca = document.getElementById("infoBusca");
+    const semResultados = document.getElementById("semResultados");
+
+    campoBusca.addEventListener("input", function () {
+      const termo = campoBusca.value.toLowerCase().trim();
+      let encontrados = 0;
+
+      cards.forEach(card => {
+        const texto = card.innerText.toLowerCase();
+
+        if (texto.includes(termo)) {
+          card.style.display = "block";
+          encontrados++;
+        } else {
+          card.style.display = "none";
+        }
+      });
+
+      if (termo === "") {
+        infoBusca.textContent = "Mostrando todos os dispositivos";
+      } else {
+        infoBusca.textContent = "Resultado da busca por: " + campoBusca.value;
+      }
+
+      if (encontrados === 0) {
+        semResultados.style.display = "block";
+      } else {
+        semResultados.style.display = "none";
+      }
+    });
+  </script>
+
+</body>
+</html>
